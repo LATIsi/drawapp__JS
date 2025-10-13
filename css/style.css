@@ -1,0 +1,117 @@
+@import "reset.css";
+
+body{
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    display: flex;
+    gap:20px;
+    justify-content: space-between;
+    align-items: flex-start;
+    background-color: gainsboro;
+    padding:20px;
+    
+}
+
+
+button{
+    all:unset;
+    padding:10px 30px;
+    text-align: center;
+    background-color: cornflowerblue;
+    color:white;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: opacity linear .2s;
+}
+
+
+button:hover{
+    opacity: 0.8;
+}
+
+input#text{
+    all:unset;
+    padding:10px 10px;
+    text-align: center;
+    background-color: white;
+    font-weight: 500;
+    font-size: 15px;
+    border-radius: 10px;
+}
+
+
+input#file{
+    all:unset;
+    display: none;
+}
+
+.canvas{
+    width: 800px;
+    height: 550px;
+    background-color: white;
+    border-radius: 20px;
+    position: absolute;
+    top:3s0px;
+    left:80px;
+    box-shadow: 0 6px 6px rgba(50, 50, 100, 0.15), 0 2px 3px rgba(50, 50, 100, 0.15);
+}
+
+
+.control_colors{
+    display: flex;
+    gap:10px;
+    flex-direction: column;
+    position: relative;
+}
+
+.control_colors .control_color{
+    width: 40px;
+    cursor: pointer;
+    height: 40px;
+    border-radius: 16px;
+    box-shadow: 0 6px 6px rgba(50, 50, 100, 0.15), 0 2px 3px rgba(50, 50, 100, 0.15);
+    transition:transform ease-in-out .3s;
+}
+
+.control_colors .control_color:hover{
+   transform: scale(1.2);
+}
+
+.control_colors #allcolor{
+    width: 43px;
+    height: 40px;
+    appearance: none;
+    background:none;
+    border:none;
+    border-radius: 50%;
+    box-shadow: 0 6px 6px rgba(50, 50, 100, 0.15), 0 2px 3px rgba(50, 50, 100, 0.15);
+}
+
+#allcolor::-webkit-color-swatch-wrapper {
+	padding: 0;
+    margin:0;
+}
+
+#allcolor::-webkit-color-swatch {
+    border:none;
+    border-radius: 50%;
+}
+
+.btns{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    z-index: 2;
+    width: 30vw;
+    height: 100vh;
+    top:0;
+    right:0;
+}
+
+.control_btn{
+    align-items: center;
+    width: 250px;
+ }
+ 
+
+
