@@ -13,7 +13,6 @@ body{
 
 
 button{
-    all:unset;
     padding:10px 30px;
     text-align: center;
     background-color: cornflowerblue;
@@ -46,12 +45,12 @@ input#file{
 }
 
 .canvas{
-    width: 800px;
-    height: 550px;
+    width: 85dvw;
+    height: 95dvh;
     background-color: white;
-    border-radius: 20px;
+    border-radius: 2rem;
     position: absolute;
-    top:3s0px;
+    top:1rem;
     left:80px;
     box-shadow: 0 6px 6px rgba(50, 50, 100, 0.15), 0 2px 3px rgba(50, 50, 100, 0.15);
 }
@@ -97,21 +96,119 @@ input#file{
     border-radius: 50%;
 }
 
-.btns{
+.toggle_btns{
+    position: fixed;
+    right: -0.7dvw;
+    bottom: 10dvh;
+    padding: 1.3rem;
+    border-radius:  2.3rem;
+    background-color:cornflowerblue;
+    z-index: 25;
+}
+
+.toggle_btns>img{
+    width: 2rem;
+    height: auto;
+}
+
+.btns>ul{
     display: flex;
     flex-direction: column;
     position: absolute;
-    z-index: 2;
-    width: 30vw;
-    height: 100vh;
+    z-index: 50;
+    width: 30dvw;
+    height: 100dvh;
     top:0;
     right:0;
+    background-color: aliceblue;
+    
 }
 
-.control_btn{
-    align-items: center;
-    width: 250px;
- }
+.btns>ul>li{
+    flex-grow: 1;
+}
+
+.btns>ul>li:last-child{
+    background-color: cornflowerblue;
+}
+
+.btns>ul>li>*{
+    display: block;
+    margin: 0 auto; 
+}
+
+
+#font_div{
+    flex-grow: 2;
+}
+
+
+label img{
+    width: 3rem;
+    height: auto;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
  
+.save_ok_popup{
+    position: fixed;
+    width: 50dvw;
+    height: 70dvh;
+    top:50%;
+    left: 50%;
+    z-index: 500;
+    transform: translate(-50%,-50%);
+    background-color: aliceblue;
+}
+
+.save_ok_popup>img{
+    width: 10dvw;
+    height: auto;
+    margin: 0 auto;
+}
+
+.save_popup_button{
+    width: 300px;
+    background-color: orange;
+    color:white;
+    font-size: 1.5rem;
+    text-align: center;
+    border-radius: 0.5rem;
+    border: none; 
+}
 
 
+.pop_opacity_bg{
+    width: 100dvw;
+    height: 100dvh;
+    top:0;
+    left:0;
+    background-color: rgba(0,0,0,0.3);
+    z-index: 10;
+    position: fixed;
+}
+
+
+.hide{
+    display: none;
+}
+
+.btnOn{
+   right: 29.3vw;
+}

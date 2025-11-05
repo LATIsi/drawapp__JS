@@ -8,66 +8,63 @@
     <title>PaintJS_draw</title>
   </head>
   <body>
-    <div id="jsColors" class="control_colors">
-      <input id="allcolor" type="color"  class="control_color" />
-      <div
-        class="control_color"
-        style="background-color: black"
-        data-color="#000000"
-      ></div>
-      <div
-        class="control_color"
-        style="background-color: white"
-        data-color="#ffffff"
-      ></div>
-      <div
-        class="control_color"
-        style="background-color: orangered"
-        data-color="#ff4500"
-      ></div>
-      <div
-        class="control_color"
-        style="background-color: orange"
-        data-color="#ffa500"
-      ></div>
-      <div
-        class="control_color"
-        style="background-color: yellow"
-        data-color="#ffff00"
-      ></div>
-      <div
-        class="control_color"
-        style="background-color: greenyellow"
-        data-color="#adff2f"
-      ></div>
-      <div
-        class="control_color"
-        style="background-color: skyblue"
-        data-color="#87ceeb"
-      ></div>
-      <div
-        class="control_color"
-        style="background-color: dodgerblue"
-        data-color="#1e90ff"
-      ></div>
-      <div
-        class="control_color"
-        style="background-color: darkorchid"
-        data-color="#9932cc"
-      ></div>
-
-    </div>
+    <ul id="jsColors" class="control_colors">
+      <li>
+        <input id="allcolor" type="color"  class="control_color" />
+      </li>
+      <li class="control_color"
+          style="background-color: black"
+          data-color="#000000">
+      </li>
+      <li class="control_color"
+          style="background-color: white"
+          data-color="#ffffff">
+      </li>
+      <li class="control_color"
+          style="background-color: orangered"
+          data-color="#ff4500">
+      </li>
+      <li class="control_color"
+          style="background-color: orange"
+          data-color="#ffa500">
+      </li>
+      <li class="control_color"
+          style="background-color: yellow"
+          data-color="#ffff00">
+      </li>
+      <li class="control_color"
+          style="background-color: greenyellow"
+          data-color="#adff2f">
+      </li>
+      <li class="control_color"
+          style="background-color: skyblue"
+          data-color="#87ceeb">
+      </li>
+      <li class="control_color"
+          style="background-color: dodgerblue"
+          data-color="#1e90ff">
+      </li>
+      <li class="control_color"
+          style="background-color: darkorchid"
+          data-color="#9932cc">
+      </li>
+    </ul>
 
     <canvas id="jsCanvas" class="canvas"></canvas>
-    <div class="btns">
-      <span>Pencil Width</span>
-      <input id="line-width" type="range" min="1" max="5" value="3" step="0.2" />
-      <div class="control">
-        <div class="controls_btn">
+    <button class="toggle_btns">
+      <img src="./img/fa--pencil.png" alt="그림그리기 버튼 아이콘">
+    </button>
+
+    <div class="btns hide">
+      <ul>
+        <li><span>Pencil Width</span></li>
+        <li><input id="line-width" type="range" min="1" max="5" value="3" step="0.1" /></li>
+        <li class="controls_btn">
           <button id="jsMode">Fill</button>
           <button id="jsEraser"> Eraser </button>
           <button id="jsClear"> Clear All </button>
-          <div id="font_div">
+        </li>
+        <li id="font_div">
               <span>Text</span>
               <input id="fontSize" type="range" min="8" max="50" value="12" step="1" />
               <select id="fontSelect">
@@ -78,15 +75,29 @@
               </select>
               <input id="fontColor" type="color" />
               <input type="text" id="text" placeholder="텍스트를 입력 캔버스 더블클릭"/>
-          </div>
+        </li>
+        <li> 
           <label for="file">
-             이미지 추가하기
-             <input type="file" accept="image/*" id="file" value="이미지 불러오기" />
-            </label>
-           <button id="jsSave"> Save</button>
-        </div>
-      </div>
+            이미지 불러오기
+            <input type="file" accept="image/*" id="file" value="이미지 불러오기" />
+            <img src="./img/prime--images.png" alt="이미지 불러오기 아이콘" class="image_load_icon">
+          </label>
+        </li>
+        <li id="jsSave">
+          <button >Save</button>
+        </li>
+      </ul>
     </div>
+
+    <div class="save_ok_popup hide">
+      <img src="./img/free-icon-color-palette-5972391.png" alt="그림 저장 아이콘">
+      <p>당신의 그림을 디바이스에<br>
+      저장했습니다!</p>
+      <button class="save_popup_button">확인</button>
+    </div>
+
+    <div class="pop_opacity_bg hide"></div>
+
     <script src="./js/app.js"></script>
   </body>
 </html>

@@ -9,7 +9,7 @@ css의 default 디폴트 값을 초기화하는 `Reset Css활용`을 한 JS로 �
 
 </br>
 
-GitHub Pages url : <a>https://LATIsi.github.io/mj_home_remake</a>
+GitHub Pages url : <a>https://LATIsi.github.io/drawapp__JS</a>
 
 </br>
 
@@ -28,8 +28,6 @@ GitHub Pages url : <a>https://LATIsi.github.io/mj_home_remake</a>
 </br>
 
 UI디자인은 figma로 디자인했습니다.
-
-figma url : <a>https://www.figma.com/design/sj7YtDzXbdOf8P6ylJaE54/drawapp?node-id=0-1&p=f&t=mH1mBbSlqa4FdAil-0</a>
 
 </br>
 
@@ -77,7 +75,7 @@ index.html을 연다
 
 # 추가 항목
 
-참고한 자료 등
+### 참고한 자료 등
 
 - 배운 강의
 
@@ -102,3 +100,19 @@ index.html을 연다
 <a>https://velog.io/@chojs28/Git-%EC%BB%A4%EB%B0%8B-%EB%A9%94%EC%8B%9C%EC%A7%80-%EA%B7%9C%EC%B9%99</a>
 
 <br>
+
+- CanvasAPI 관련 globalCompositeOperation, resizing
+
+<a>https://nova-68.tistory.com/119</a>
+
+<br>
+
+### 아이콘 및 픽토그램 출처
+
+<br>
+
+- 팔레트 아이콘
+<a href="https://www.flaticon.com/kr/free-icons/" title="팔레트 아이콘">팔레트 아이콘 제작자: smashingstocks - Flaticon</a>
+
+<br>
+
