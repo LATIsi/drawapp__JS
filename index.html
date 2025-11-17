@@ -57,34 +57,42 @@
 
     <div class="btns hide">
       <ul>
-        <li><span>Pencil Width</span></li>
-        <li><input id="line-width" type="range" min="1" max="5" value="3" step="0.1" /></li>
+        <li>
+          <span>Pencil Width</span>
+          <span>1</span>
+        </li>
+        <li>
+          <input id="line-width" type="range" min="1" max="5" value="3" step="0.1" />
+          <span>1</span>
+          <span>1</span>
+        </li>
         <li class="controls_btn">
-          <button id="jsMode">Fill</button>
-          <button id="jsEraser"> Eraser </button>
-          <button id="jsClear"> Clear All </button>
+          <button id="jsMode">Draw 🖌️</button>
+          <button id="jsEraser"> Eraser 👝</button>
+          <button id="jsClear"> Clear All ⬜</button>
         </li>
         <li id="font_div">
               <span>Text</span>
-              <input id="fontSize" type="range" min="8" max="50" value="12" step="1" />
+              <input id="fontSize" type="range" min="8" max="50" value="12" step="5" />
               <select id="fontSelect">
-                  <option value="Alumni">Alumni Sans Pinstripe</option>
+                  <option value="Alumni Sans Pinstripe">Alumni Sans Pinstripe</option>
                   <option value="Roboto">Roboto</option>
-                  <option value="Nanum">나눔명조</option>
+                  <option value="Nanum Gothic">나눔명조</option>
                   <option value="Silkscreen">Silkscreen</option>
               </select>
               <input id="fontColor" type="color" />
-              <input type="text" id="text" placeholder="텍스트를 입력 캔버스 더블클릭"/>
+              <input type="text" id="text" placeholder="입력 후 캔버스 더블클릭"/>
         </li>
         <li> 
           <label for="file">
-            이미지 불러오기
+            <span>이미지 추가</span>
+            <!-- 이미지만 선택하게끔 accept 속성 지정 -->
             <input type="file" accept="image/*" id="file" value="이미지 불러오기" />
             <img src="./img/prime--images.png" alt="이미지 불러오기 아이콘" class="image_load_icon">
           </label>
         </li>
         <li id="jsSave">
-          <button >Save</button>
+          <button >Save ➜]</button>
         </li>
       </ul>
     </div>
@@ -98,6 +106,7 @@
 
     <div class="pop_opacity_bg hide"></div>
 
+    <div class="loading_view"></div>
     <script src="./js/app.js"></script>
   </body>
 </html>

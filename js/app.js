@@ -32,57 +32,30 @@ const saveOkPopup = document.querySelector(".save_ok_popup");
 const savePopupButton = document.querySelector(".save_popup_button");
 
 
+const ctx = canvas.getContext("2d");
+
 // 그림판 가로 세로 넓이 불러오기
-let canvasHeight = canvas.clientWidth;
-let canvasWidth  = canvas.clientHeight;
+canvas.width = canvas.clientWidth;
+canvas.height = canvas.clientHeight;
 
 // 그림판 반응형( 반응형으로 바꿀때마다 그림 초기화됨 )
 window.addEventListener("resize", resizeCanvas);
 
 function resizeCanvas(){
-    canvasHeight = canvas.clientWidth;
-    canvasWidth  = canvas.clientHeight;
     canvas.width = canvas.clientWidth;
     canvas.height = canvas.clientHeight;
-    console.log("리사이즈");
 }
 
 
-//3d or 2d
-const ctx = canvas.getContext("2d");
-
-canvas.width = canvas.clientWidth;
-canvas.height = canvas.clientHeight;
-
-//폰트
-let font_Alumni = new FontFace('Alumni Sans Pinstripe','url("https://fonts.googleapis.com/css2?family=Alumni+Sans+Pinstripe&display=swap")');
-
-let font_Roboto = new FontFace('Roboto','url("https://fonts.googleapis.com/css2?family=Alumni+Sans+Pinstripe&family=Roboto:wght@300&display=swap")');
-
-let font_Nanum = new FontFace('Nanum','url("https://fonts.googleapis.com/css2?family=Alumni+Sans+Pinstripe&family=Nanum+Myeongjo&display=swap")');
-
-let font_Silkscreen = new FontFace('Silkscreen','url("https://fonts.googleapis.com/css2?family=Alumni+Sans+Pinstripe&family=Silkscreen&display=swap")');
-
-
-font_Alumni.load().then(function(){
- ctx.font = 'Alumni Sans Pinstripe';
-});
-
-font_Roboto.load().then(function(){
-    ctx.font = 'Roboto';
-});
-
-font_Nanum.load().then(function(){
-    ctx.font = 'Nanum';
-});
-
-font_Silkscreen.load().then(function(){
-    ctx.font = 'Silkscreen';
-});
+//폰트 패밀리 및 사이즈 조정 - 기본;
+let font_family = 'Alumni Sans Pinstripe';
+let font_size = 1;
 
 
 //html이 먼저 load 되어서 값을 가져올수있음.
 ctx.lineWidth = lineWidth.value;
+
+// 선 끝을 둥글게 만들기
 ctx.lineCap = "round";
 
 // 색 이름 지정
@@ -130,9 +103,6 @@ function onLineWidthChange(e){
     ctx.lineWidth = e.target.value;
 }
 
-function onFontSizeChange(e){
-    ctx.font = e.target.value;
-}
 
 function onColorChange(e){
     ctx.strokeStyle = e.target.value;
@@ -149,14 +119,11 @@ function onClickColor(e){
 function onClickMode(e){
     
     if (isFilling) {
-
         isFilling=false;
-        jsMode.innerHTML="Fill";
-
+        jsMode.innerHTML="Draw 🖌️";
     }else{
-
         isFilling=true;
-        jsMode.innerHTML="Draw"
+        jsMode.innerHTML="All Fill 🪣"
     }
 
 }
@@ -164,7 +131,7 @@ function onClickMode(e){
 function onFillCanvas(e){
     
     if (isFilling) {
-    ctx.fillRect(0,0,canvasWidth,canvasHeight);
+    ctx.fillRect(0,0,canvas.width,canvas.height);
     }
 
 }
@@ -172,10 +139,21 @@ function onFillCanvas(e){
 
 function onClear(){
     ctx.fillStyle="white";
-    ctx.fillRect(0,0,canvasWidth,canvasHeight);
+    ctx.fillRect(0,0,canvas.width,canvas.height);
 }
 
 
+// 글씨체 select 변경시, 현재 폰트 사이즈와 패밀리 변경 완료
+function onFontFaceChange(e){
+    font_family = selectFontFace.options[selectFontFace.selectedIndex].value;
+    ctx.font = font_size+"px "+font_family;
+}
+
+// 글씨체 크기 변경시, 변경된 폰트 사이즈와 현재 패밀리폰트로 수정 완료
+function onFontSizeChange(e){
+    font_size = e.target.value;
+    ctx.font = font_size+"px "+font_family;
+}
 
 
 function onDoubleClick(e){
@@ -183,7 +161,6 @@ function onDoubleClick(e){
    const text = inputText.value;
    if(text !== ""){
         ctx.save();
-        ctx.lineWidth = 2;
         ctx.fillText(text,e.offsetX,e.offsetY);
         ctx.restore();
    }
@@ -199,7 +176,7 @@ function onFileChange(e){
     image.src = url;
 
     image.onload = function(){
-        ctx.drawImage(image,0,0,canvasWidth,canvasHeight);
+        ctx.drawImage(image,0,0,canvas.width,canvas.height);
         // 가져온 이미지가 있어서 새로운 이미지를 다시 불러오고싶을때.
         inputFile.value= null;
     }
@@ -227,9 +204,12 @@ function onSavePopUpButtonClick(){
 
 
 function onSaveClick(){
+    // 이미지를 url로 변환해줌... 
     const url = canvas.toDataURL();
+    // a 태그안의 download 속성을 이용!
     const a  = document.createElement("a");
 
+    // 열린창들 css 속성 다 숨겨줌~  save ok시 보이는 popup은 보이게하고! 
     saveOkPopup.classList.toggle("hide");
     btns.classList.toggle("hide");
     toggleBtns.classList.remove("btnOn");
@@ -245,7 +225,7 @@ canvas.addEventListener("mousedown", startDraw);
 canvas.addEventListener("mouseup", cancleDraw);
 canvas.addEventListener("mouseleave", cancleDraw);
 
-
+// 마우스 더블클릭으로 텍스트 작성
 canvas.addEventListener("dblclick",
 onDoubleClick);
 
@@ -270,7 +250,8 @@ buttonClear.addEventListener("click",onClear);
 
 //폰트
 selectFontSize.addEventListener("change",onFontSizeChange);
-
+//select 박스에서 폰트 설정시,
+selectFontFace.addEventListener("change",onFontFaceChange);
 
 
 savePopupButton.addEventListener("click",onSavePopUpButtonClick)

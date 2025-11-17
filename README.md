@@ -44,6 +44,7 @@ UI디자인은 figma로 디자인했습니다.
 - html
 - **GitHub Pages 배포**
 - 아이콘 플러그인 iconify (<a>https://iconify.design/</a>) 활용
+- 이모티콘 홈페이지 (<a>https://emojidb.org/eraser-emojis</a>) 활용
 
 </br>
 
