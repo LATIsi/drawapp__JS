@@ -1,10 +1,8 @@
 /* 구글 폰트 임베드*/
 @import url('https://fonts.googleapis.com/css2?family=Alumni+Sans+Pinstripe:ital@0;1&family=Nanum+Gothic&family=Roboto:ital,wght@0,100..900;1,100..900&family=Silkscreen:wght@400;700&display=swap');
 
-
-
 @import "reset.css";
-@import "font.css";
+@import "loding.css";
 
 
 
@@ -15,7 +13,7 @@ body{
     justify-content: space-between;
     align-items: flex-start;
     background-color: gainsboro;
-    padding:20px;
+    padding:0;
     
 }
 
@@ -66,13 +64,14 @@ input#file{
     background-color: white;
     border-radius: 2rem;
     position: absolute;
-    top:1rem;
-    left:80px;
+    top:calc(1rem + 10px);
+    left:90px;
     box-shadow: 0 6px 6px rgba(50, 50, 100, 0.15), 0 2px 3px rgba(50, 50, 100, 0.15);
 }
 
 
 .control_colors{
+    padding:25px;
     display: flex;
     gap:10px;
     flex-direction: column;
@@ -172,24 +171,6 @@ label img{
     width: 3rem;
     height: auto;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
  
 .save_ok_popup{
     position: fixed;
@@ -236,4 +217,18 @@ label img{
 
 .btnOn{
    right: 29.3vw;
+}
+
+.fade-Out {
+  animation: fadeOut 0.3s ease-out forwards;
+  animation-delay: 1.8s;
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }

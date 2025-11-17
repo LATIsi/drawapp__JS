@@ -32,7 +32,22 @@ const saveOkPopup = document.querySelector(".save_ok_popup");
 const savePopupButton = document.querySelector(".save_popup_button");
 
 
+// 로딩화면
+const loading_view = document.querySelector(".loading_view");
+
+
 const ctx = canvas.getContext("2d");
+
+//폰트 패밀리 및 사이즈 조정 - 기본;
+let font_family = 'Alumni Sans Pinstripe';
+let font_size = 1;
+
+// 브러쉬 크기 기본 설정(3)
+const pencil_width = document.querySelector(".pencil_width");
+const text_width = document.querySelector(".text_width");
+
+
+
 
 // 그림판 가로 세로 넓이 불러오기
 canvas.width = canvas.clientWidth;
@@ -47,9 +62,6 @@ function resizeCanvas(){
 }
 
 
-//폰트 패밀리 및 사이즈 조정 - 기본;
-let font_family = 'Alumni Sans Pinstripe';
-let font_size = 1;
 
 
 //html이 먼저 load 되어서 값을 가져올수있음.
@@ -70,9 +82,12 @@ const colors =[
     "darkorchid"
 ]
 
-ctx.lineWidth = 1;
 let isPainting = false;
 let isFilling = false;
+
+// 초반에 그림판 투명이 아니라 하얗게 덮어주기 ( 지우개 사용시 이렇게 안하면 투명부분에 하얀색이 그대로 나옴..)
+ctx.fillStyle="white";
+ctx.fillRect(0,0,canvas.width,canvas.height);
 
 
 
@@ -100,6 +115,7 @@ function cancleDraw(){
 }
 
 function onLineWidthChange(e){
+    pencil_width.innerHTML= e.target.value+"px";
     ctx.lineWidth = e.target.value;
 }
 
@@ -152,6 +168,7 @@ function onFontFaceChange(e){
 // 글씨체 크기 변경시, 변경된 폰트 사이즈와 현재 패밀리폰트로 수정 완료
 function onFontSizeChange(e){
     font_size = e.target.value;
+    text_width.innerHTML= font_size +"px";
     ctx.font = font_size+"px "+font_family;
 }
 
@@ -237,14 +254,19 @@ colorOption.forEach((color)=>{
     color.addEventListener("click",onClickColor);
 });
 
-jsMode.addEventListener("click",onClickMode);
-canvas.addEventListener("mousedown", onFillCanvas);
-
-buttonEraser.onClcik = function onEraser(){
+function onEraser(){
+    console.log("우아앙");
     ctx.strokeStyle = "white";
     isFilling = false;
 };
 
+
+jsMode.addEventListener("click",onClickMode);
+canvas.addEventListener("mousedown", onFillCanvas);
+
+
+
+buttonEraser.addEventListener("click",onEraser);
 buttonClear.addEventListener("click",onClear);
 
 
@@ -264,3 +286,8 @@ inputFile.addEventListener("change", onFileChange);
 saveButton.addEventListener("click", onSaveClick);
 saveButton.addEventListener("click", onSaveClick);
 
+// JS (애니메이션 끝나면 숨기기)
+
+  loading_view.addEventListener("animationend", () => {
+    loading_view.style.display = "none";
+});
