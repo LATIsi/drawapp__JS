@@ -14,14 +14,14 @@ GitHub Pages url : <a>https://LATIsi.github.io/drawapp__JS</a>
 </br>
 
 ## PC
-<img width="752" height="716" alt="Image" src="https://github.com/user-attachments/assets/cfb7fbe2-7b93-43ef-8cf0-a159c1ac03be" />
+<img width="832" height="793" alt="Image" src="https://github.com/user-attachments/assets/b4e4f0bc-af5d-4393-9cb3-f7caf07c22c1" />
 </br>
 
 1920px * 1080px 해상도 기준
 
 
 ## 모바일
-<img width="681" height="416" alt="Image" src="https://github.com/user-attachments/assets/e77d0cd7-9c7b-4dac-a23d-a3ad383d895f" />
+<img width="1157" height="482" alt="Image" src="https://github.com/user-attachments/assets/0663b406-301b-48d6-99b1-76842a087caa" />
 </br>
 360px * 800px 해상도 기준
 
@@ -105,6 +105,12 @@ index.html을 연다
 - CanvasAPI 관련 globalCompositeOperation, resizing
 
 <a>https://nova-68.tistory.com/119</a>
+
+<br>
+
+- px - rem 변환기
+
+<a>https://nekocalc.com/px-to-rem-converter</a>
 
 <br>
 

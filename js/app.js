@@ -129,7 +129,6 @@ function onClickColor(e){
     const colorValue = e.target.dataset.color;
     ctx.strokeStyle = colorValue;
     ctx.fillStyle = colorValue;
-    color.value = colorValue;
 }
 
 function onClickMode(e){
@@ -248,7 +247,7 @@ onDoubleClick);
 
 
 lineWidth.addEventListener("change",onLineWidthChange);
-allColor.addEventListener("change",onColorChange)
+allColor.addEventListener("change",onColorChange);
 
 colorOption.forEach((color)=>{
     color.addEventListener("click",onClickColor);
@@ -278,7 +277,7 @@ selectFontFace.addEventListener("change",onFontFaceChange);
 
 savePopupButton.addEventListener("click",onSavePopUpButtonClick)
 
-
+selectFontColor.addEventListener("change",onColorChange);
 
 
 inputFile.addEventListener("change", onFileChange);

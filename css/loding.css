@@ -36,17 +36,48 @@
     width: 1rem;
     height: 1rem;
     border-radius: 20px;
+    /*li에 pulse라고 지정한 키 애니메이션 반복적으로 넣어줌....*/
     animation: pulse 1.3s ease-in-out infinite;
 }
 
-/* li 순서에 따라 애니메이션 시간차 적용 */
+/* li 순서에 따라 애니메이션 시간차 적용 (시작시간을 늦춰서 순차적으로 보이게끔 한 것*/
 .loading_circle>li:nth-child(1) { animation-delay: 0s; }
 .loading_circle>li:nth-child(2) { animation-delay: 0.3s; }
 .loading_circle>li:nth-child(3) { animation-delay: 0.6s; }
 
+
+/*애니메이션! 시작과 끝은 처음과 같지만 딱 애니메이션 중간에서부터 커지는 효과로 울룩불룩한거마냥 보이게했음*/
 @keyframes pulse {
   0%   { transform: scale(1);
          background-color:rgb(213, 213, 213);}
   50%  { transform: scale(1.8); }
   100% { transform: scale(1); }
+}
+
+
+/*가로 700px 이하, 높이 700이하일시 그리는 모바일 디자인으로 변형*/
+@media (max-width: 700px), (max-height: 700px){
+  .karantina-regular {
+    display: block;
+    font-size: 8rem;
+    font-family: "Karantina", system-ui;
+    font-weight: 400;
+    font-style: normal;
+    color:white;
+    margin-bottom: 1rem;
+  }
+
+
+}
+
+/*모바일 화면*/
+@media (max-width: 400px){
+  .karantina-regular {
+    display: block;
+    font-size: 6rem;
+    font-family: "Karantina", system-ui;
+    font-weight: 400;
+    font-style: normal;
+    color:white;
+  }
 }
