@@ -254,7 +254,6 @@ colorOption.forEach((color)=>{
 });
 
 function onEraser(){
-    console.log("우아앙");
     ctx.strokeStyle = "white";
     isFilling = false;
 };
