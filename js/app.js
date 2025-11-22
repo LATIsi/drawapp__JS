@@ -36,18 +36,17 @@ const savePopupButton = document.querySelector(".save_popup_button");
 const loading_view = document.querySelector(".loading_view");
 
 
+// 캔버스
 const ctx = canvas.getContext("2d");
+
 
 //폰트 패밀리 및 사이즈 조정 - 기본;
 let font_family = 'Alumni Sans Pinstripe';
-let font_size = 1;
+let font_size = 12;
 
 // 브러쉬 크기 기본 설정(3)
 const pencil_width = document.querySelector(".pencil_width");
 const text_width = document.querySelector(".text_width");
-
-
-
 
 // 그림판 가로 세로 넓이 불러오기
 canvas.width = canvas.clientWidth;
@@ -92,12 +91,14 @@ ctx.fillRect(0,0,canvas.width,canvas.height);
 
 
 function onClickMove(e){
+    e.preventDefault();
     if (isPainting) {
+        console.log("ctx.lineTo 그리는중~")
         ctx.lineTo(e.offsetX,e.offsetY);
         ctx.stroke();
         return;
     }
-
+    console.log("ctx.moveTo 그리는중~")
     ctx.moveTo(e.offsetX,e.offsetY);
 }
 
@@ -112,6 +113,8 @@ function cancleDraw(){
     isPainting = false;
     // 선 굵기나 색이 바뀌어도 괜찮게..
     ctx.beginPath();
+
+
 }
 
 function onLineWidthChange(e){
@@ -146,7 +149,7 @@ function onClickMode(e){
 function onFillCanvas(e){
     
     if (isFilling) {
-    ctx.fillRect(0,0,canvas.width,canvas.height);
+        ctx.fillRect(0,0,canvas.width,canvas.height);
     }
 
 }
@@ -173,7 +176,10 @@ function onFontSizeChange(e){
 
 
 function onDoubleClick(e){
-   
+   // 기본, 아무것도 설정하지않고 곧장 입력시 보이게
+   ctx.fillStyle = "black"; 
+   ctx.font = font_size+"px "+ font_family;
+
    const text = inputText.value;
    if(text !== ""){
         ctx.save();
@@ -236,10 +242,24 @@ function onSaveClick(){
     a.click();
 }
 
-canvas.addEventListener("mousemove", onClickMove);
-canvas.addEventListener("mousedown", startDraw);
-canvas.addEventListener("mouseup", cancleDraw);
-canvas.addEventListener("mouseleave", cancleDraw);
+function onEraser(){
+    ctx.strokeStyle = "white";
+    isFilling = false;
+};
+
+// 모바일 JS 이벤트를 위해
+// mousedown / touchstart 대신 pointerdown 을 사용 
+// mouseup / touchend 대신 pointerup 을 사용
+// 으로 변환합니다 (https://designhuh.tistory.com/76 참고)
+// https://developer.mozilla.org/en-US/docs/Web/API/Element/pointermove_event
+
+
+
+canvas.addEventListener("pointermove", onClickMove);
+//{ passive: true } 를 해서 preventDefault() 실행하게 하기.
+canvas.addEventListener("pointerdown", startDraw);
+canvas.addEventListener("pointerup", cancleDraw);
+canvas.addEventListener("pointercancel", cancleDraw);
 
 // 마우스 더블클릭으로 텍스트 작성
 canvas.addEventListener("dblclick",
@@ -253,17 +273,8 @@ colorOption.forEach((color)=>{
     color.addEventListener("click",onClickColor);
 });
 
-function onEraser(){
-    ctx.strokeStyle = "white";
-    isFilling = false;
-};
-
-
 jsMode.addEventListener("click",onClickMode);
-canvas.addEventListener("mousedown", onFillCanvas);
-
-
-
+canvas.addEventListener("pointerdown", onFillCanvas);
 buttonEraser.addEventListener("click",onEraser);
 buttonClear.addEventListener("click",onClear);
 
@@ -289,3 +300,5 @@ saveButton.addEventListener("click", onSaveClick);
   loading_view.addEventListener("animationend", () => {
     loading_view.style.display = "none";
 });
+
+

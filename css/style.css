@@ -50,6 +50,10 @@ input#file{
 }
 
 .canvas{
+    /*모바일 터치에서 포인터무브 이벤트가 스크롤 / 더블 탭 줌이랑 겹쳐서 pointercancel가 자꾸 발생함 ㅠㅠ */
+    touch-action: none;
+
+
     width: 85dvw;
     height: 95dvh;
     background-color: white;

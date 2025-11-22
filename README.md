@@ -74,6 +74,7 @@ index.html을 연다
 </br>
 
 
+
 # 추가 항목
 
 ### 참고한 자료 등
@@ -113,6 +114,13 @@ index.html을 연다
 <a>https://nekocalc.com/px-to-rem-converter</a>
 
 <br>
+
+- [JS] 자바스크립트 mousedown / touchstart 를 한번에 처리
+<a>https://designhuh.tistory.com/76</a>
+
+
+<br>
+
 
 ### 아이콘 및 픽토그램 출처
 
