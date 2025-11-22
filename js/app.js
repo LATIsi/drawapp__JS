@@ -117,12 +117,16 @@ function onClickMove(e){
 
 
 // 마우스를 누를때 그려짐
-function startDraw(){
+function startDraw(e){
+     e.preventDefault();
+    ctx.strokeStyle = setBrushColor;
+    ctx.fillStyle = setBrushColor;
     isPainting = true;
 }
 
 // 마우스를 뗄 때 안 그려짐
-function cancleDraw(){
+function cancleDraw(e){
+     e.preventDefault();
     isPainting = false;
     // 선 굵기나 색이 바뀌어도 괜찮게..
     ctx.beginPath();
@@ -168,6 +172,7 @@ function onClickMode(e){
 }
 
 function onFillCanvas(e){
+    e.preventDefault();
     if (isFilling) {
         ctx.fillStyle = setBrushColor;
         ctx.fillRect(0,0,canvas.width,canvas.height);
@@ -196,17 +201,30 @@ function onFontSizeChange(e){
     ctx.font = font_size+"px "+font_family;
 }
 
+//더블탭 감지 변수
+let lastTap = 0;
 
 function onDoubleClick(e){
    const text = inputText.value;
    
-   if(text !== ""){
-        ctx.save();
-        ctx.font = font_size+"px "+ font_family;
-        ctx.fillStyle = setFontColor;
-        ctx.fillText(text,e.offsetX,e.offsetY);
-        ctx.restore();
-   }
+    const now = Date.now();
+         // 지금시간에서 마지막 탭한 시간을 빼서, 언제부터 탭을 시작했는지 변수에 담음
+        const tapInterval = now - lastTap;
+
+       //   마지막에 탭한게 0~300ms이면 글자 입력하게해줌!!
+        if (tapInterval < 300 && tapInterval > 0) {
+            if(text !== ""){
+                    ctx.save();
+                    ctx.font = font_size+"px "+ font_family;
+                    ctx.fillStyle = setFontColor;
+                    ctx.fillText(text,e.offsetX,e.offsetY);
+                    ctx.restore();
+            }
+        }
+
+    // 마지막 시간 탭 업데이트해서 다음 더블탭 감지!
+    lastTap = now;
+
 }
 
 
@@ -273,17 +291,18 @@ function onEraser(){
 // mouseup / touchend 대신 pointerup 을 사용
 // 으로 변환합니다 (https://designhuh.tistory.com/76 참고)
 // https://developer.mozilla.org/en-US/docs/Web/API/Element/pointermove_event
-//{ passive: true } 를 해서 preventDefault() 실행하게 하는게 있는데... 없어도 잘 작동해서 그냥 뺏읍니다
+//{ passive: true } 를 해서 preventDefault() 실행하게 하는게 있음... 모바일에선 preventDefault를 막아주니 꼭 해주기..ㅠㅠ
 
 
-canvas.addEventListener("pointermove", onClickMove);
+canvas.addEventListener("pointermove", onClickMove,{ passive: false });
 
-canvas.addEventListener("pointerdown", startDraw);
-canvas.addEventListener("pointerup", cancleDraw);
-canvas.addEventListener("pointercancel", cancleDraw);
+canvas.addEventListener("pointerdown", startDraw,{ passive: false });
+canvas.addEventListener("pointerup", cancleDraw,{ passive: false });
+canvas.addEventListener("pointercancel", cancleDraw,{ passive: false });
 
-// 마우스 더블클릭으로 텍스트 작성
-canvas.addEventListener("dblclick",
+// 마우스 더블클릭으로 텍스트 작성... 인데 더블탭을 모바일에서 받지 못하니까
+// ondubleclick에서 더블클릭을 감지해야함
+canvas.addEventListener("pointerup",
 onDoubleClick);
 
 
@@ -295,7 +314,7 @@ colorOption.forEach((color)=>{
 });
 
 jsMode.addEventListener("click",onClickMode);
-canvas.addEventListener("pointerdown", onFillCanvas);
+canvas.addEventListener("pointerdown", onFillCanvas,{ passive: false });
 buttonEraser.addEventListener("click",onEraser);
 buttonClear.addEventListener("click",onClear);
 

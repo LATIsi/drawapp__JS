@@ -54,7 +54,7 @@ input#file{
     /*그런데... touch-action을 none으로 하면 더블탭으로 글자를 작성하는 이벤트가 안됨!! 실화냐!!
     그래서  touch-action: manipulation이라는것을 찾아 적용했습니다
     */
-    touch-action: manipulation;
+    touch-action: none;
 
 
     width: 85dvw;
