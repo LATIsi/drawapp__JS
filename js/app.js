@@ -44,6 +44,19 @@ const ctx = canvas.getContext("2d");
 let font_family = 'Alumni Sans Pinstripe';
 let font_size = 12;
 
+// 초기 브러쉬 색깔 지정
+let setBrushColor = "#000000";
+
+// 초기 글자 색깔 지정
+let setFontColor = "#000000";
+
+
+//ctx.strokeStyle = e.target.value;
+//ctx.fillStyle = e.target.value;
+//ctx.font = font_size+"px "+ font_family;
+
+
+
 // 브러쉬 크기 기본 설정(3)
 const pencil_width = document.querySelector(".pencil_width");
 const text_width = document.querySelector(".text_width");
@@ -59,7 +72,6 @@ function resizeCanvas(){
     canvas.width = canvas.clientWidth;
     canvas.height = canvas.clientHeight;
 }
-
 
 
 
@@ -92,6 +104,9 @@ ctx.fillRect(0,0,canvas.width,canvas.height);
 
 function onClickMove(e){
     e.preventDefault();
+
+
+    ctx.fillStyle = setBrushColor;
     if (isPainting) {
         ctx.lineTo(e.offsetX,e.offsetY);
         ctx.stroke();
@@ -122,14 +137,22 @@ function onLineWidthChange(e){
 
 
 function onColorChange(e){
-    ctx.strokeStyle = e.target.value;
-    ctx.fillStyle = e.target.value;
+    setFontColor = e.target.value;
+    ctx.strokeStyle = setFontColor;
+    ctx.fillStyle = setFontColor;
 }
 
 function onClickColor(e){
-    const colorValue = e.target.dataset.color;
-    ctx.strokeStyle = colorValue;
-    ctx.fillStyle = colorValue;
+   
+    if(e.target.dataset.color){
+         // 여러색상 input color가 아닌 li data-set로 지정한 color값 있을시 if문 실행
+        setBrushColor = e.target.dataset.color;
+    }else{
+         // 여러색상 input color로 색 지정하면 그걸로 하기
+        setBrushColor = e.target.value;
+    }
+    ctx.strokeStyle = setBrushColor;
+    ctx.fillStyle = setBrushColor;
 }
 
 function onClickMode(e){
@@ -145,8 +168,8 @@ function onClickMode(e){
 }
 
 function onFillCanvas(e){
-    
     if (isFilling) {
+        ctx.fillStyle = setBrushColor;
         ctx.fillRect(0,0,canvas.width,canvas.height);
     }
 
@@ -156,6 +179,7 @@ function onFillCanvas(e){
 function onClear(){
     ctx.fillStyle="white";
     ctx.fillRect(0,0,canvas.width,canvas.height);
+   
 }
 
 
@@ -174,13 +198,12 @@ function onFontSizeChange(e){
 
 
 function onDoubleClick(e){
-   // 기본, 아무것도 설정하지않고 곧장 입력시 보이게
-   ctx.fillStyle = "black"; 
-   ctx.font = font_size+"px "+ font_family;
-
    const text = inputText.value;
+   
    if(text !== ""){
         ctx.save();
+        ctx.font = font_size+"px "+ font_family;
+        ctx.fillStyle = setFontColor;
         ctx.fillText(text,e.offsetX,e.offsetY);
         ctx.restore();
    }
@@ -254,6 +277,7 @@ function onEraser(){
 
 
 canvas.addEventListener("pointermove", onClickMove);
+
 canvas.addEventListener("pointerdown", startDraw);
 canvas.addEventListener("pointerup", cancleDraw);
 canvas.addEventListener("pointercancel", cancleDraw);
@@ -264,7 +288,7 @@ onDoubleClick);
 
 
 lineWidth.addEventListener("change",onLineWidthChange);
-allColor.addEventListener("change",onColorChange);
+allColor.addEventListener("change",onClickColor);
 
 colorOption.forEach((color)=>{
     color.addEventListener("click",onClickColor);
