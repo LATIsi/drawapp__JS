@@ -122,6 +122,12 @@ index.html을 연다
 <br>
 
 
+- [html] 브라우저 탭 아이콘 설정하는 방법 (a.k.a. favicon)
+<a>https://stay-present.tistory.com/14</a>
+
+
+<br>
+
 ### 아이콘 및 픽토그램 출처
 
 <br>
@@ -130,4 +136,7 @@ index.html을 연다
 <a href="https://www.flaticon.com/kr/free-icons/" title="팔레트 아이콘">팔레트 아이콘 제작자: smashingstocks - Flaticon</a>
 
 <br>
+
+- favicon 아이콘
+<a href="https://www.favicon-generator.org/search/BLACK/Brush" title="팔레트 아이콘">favicon 아이콘 Brush</a>
 
