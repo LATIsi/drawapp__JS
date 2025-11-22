@@ -93,12 +93,10 @@ ctx.fillRect(0,0,canvas.width,canvas.height);
 function onClickMove(e){
     e.preventDefault();
     if (isPainting) {
-        console.log("ctx.lineTo 그리는중~")
         ctx.lineTo(e.offsetX,e.offsetY);
         ctx.stroke();
         return;
     }
-    console.log("ctx.moveTo 그리는중~")
     ctx.moveTo(e.offsetX,e.offsetY);
 }
 
@@ -252,11 +250,10 @@ function onEraser(){
 // mouseup / touchend 대신 pointerup 을 사용
 // 으로 변환합니다 (https://designhuh.tistory.com/76 참고)
 // https://developer.mozilla.org/en-US/docs/Web/API/Element/pointermove_event
-
+//{ passive: true } 를 해서 preventDefault() 실행하게 하는게 있는데... 없어도 잘 작동해서 그냥 뺏읍니다
 
 
 canvas.addEventListener("pointermove", onClickMove);
-//{ passive: true } 를 해서 preventDefault() 실행하게 하기.
 canvas.addEventListener("pointerdown", startDraw);
 canvas.addEventListener("pointerup", cancleDraw);
 canvas.addEventListener("pointercancel", cancleDraw);
